@@ -247,3 +247,397 @@ FinProceso
 ```
 
 > (year % 4 = 0 Y NO (year % 100 = 0)) O year % 400 = 0 : Calculo para saber si un año es bisiesto.
+
+## 13/04/2020
+
+#### Pseudocodigo: Estructuras repetitivas
+
+En este apartado se **explica** las siguientes estructuras: 
+
+* Mientras.
+* Repetir-Hasta que.
+* Para.
+* Contadores,Acumuladores y Indicadores.
+
+##### Ejercicio1
+
+```
+Proceso Factorial
+	Definir num,contador Como Entero;
+	Definir resultado Como Real;
+	resultado <- 1;
+	Escribir Sin Saltar "Dime un número:";
+	Leer num;
+	contador <- 2;
+	Mientras contador<=num Hacer
+		resultado <- resultado * contador;
+		contador <- contador + 1;
+	FinMientras
+	Escribir "El resultado es ", resultado;
+FinProceso
+```
+
+##### Ejercicio3
+
+```
+Proceso CalcularSumaMedia
+	Definir num Como Entero;
+	Definir suma,cont como Entero;
+	Definir media Como Real;
+	suma <- 0;
+	cont <-0;
+	Escribir "Número (0 para salir):";
+	Leer num;
+	Mientras num<>0 Hacer
+		suma <- suma + num;
+		cont <- cont + 1;
+		Escribir "Número (0 para salir):";
+		Leer num;
+	FinMientras
+	Si cont>0 Entonces
+		media <- suma / cont;
+	SiNo
+		media <-0;
+	FinSi
+	
+	Escribir "Suma:",suma;
+	Escribir "Media:",media;
+FinProceso
+```
+
+##### Ejercicio7
+
+```
+Proceso TablaMultiplicar
+	Definir tabla,num Como Entero;
+	Escribir Sin Saltar "¿De qué número quieres mostrar la tabla de multiplicar?:";
+	Leer tabla;
+	Para num<-1 hasta 10 Hacer
+		Escribir num," * ",tabla," = ",num*tabla;
+	FinPara
+FinProceso
+```
+
+##### Ejercicio10
+
+```
+Proceso TablasDeMultiplicar
+	Definir tabla,num Como Entero;
+	Para tabla<-1 hasta 5 Hacer
+		Para num<-1 hasta 10 Hacer
+			Escribir tabla," * ",num," = ", tabla*num;
+		FinPara
+		Esperar Tecla;
+	FinPara
+FinProceso
+```
+
+##### Ejercicio11
+
+```
+Proceso EsPrimo
+	Definir numero_es_primo,num Como Entero;
+	Definir es_primo Como Logico;
+	es_primo<-Verdadero;
+	Escribir Sin Saltar "Introduce un número para comprobar si es primo:";
+	Leer numero_es_primo;
+	Para num<-2 hasta rc(numero_es_primo) Hacer
+		Si numero_es_primo % num = 0 Entonces
+			es_primo <- Falso;
+		FinSi
+	FinPara
+	Si es_primo Entonces
+		Escribir "Es Primo";
+	SiNo
+		Escribir "No es Primo";
+	FinSi
+FinProceso
+```
+
+##### Ejercicio1 (Caracteres)
+
+```
+Proceso EscribirCaracteres
+	Definir cad Como Caracter;
+	Definir posicion Como Entero;
+	Escribir "Introduce una cadena:";
+	Leer cad;
+	Para posicion<-0 hasta Longitud(cad)-1 Hacer
+		Escribir Subcadena(cad,posicion,posicion);
+	FinPara
+FinProceso
+```
+
+##### Ejercicio2 (Caracteres)
+
+```
+Proceso ComienzaPor
+	Definir cad,subcad Como Caracter;
+	Escribir Sin Saltar "Introduce una cadena:";
+	Leer cad;
+	Escribir Sin Saltar "Introduce una subcadena:";
+	Leer subcad;
+	Si Subcadena (cad,0,Longitud(subcad)-1)=subcad Entonces
+		Escribir "La cadena comienza por la subcadena";
+	SiNo
+		Escribir "La cadena NO comienza por la subcadena";
+	FinSi
+FinProceso
+```
+
+##### Ejercicio6 (Caracteres)
+
+```
+Proceso CadenaInvertida
+	Definir cad,invertida Como Caracter;
+	Definir car como Entero;
+	invertida<-"";
+	Escribir Sin Saltar "Introduce una cadena:";
+	Leer cad;
+
+	Para car<-Longitud(cad)-1 hasta 0 Con Paso -1 Hacer
+		invertida<-concatenar(invertida,Subcadena(cad,car,car));
+	FinPara
+	Escribir "La cadena invertida es:",invertida;
+FinProceso
+```
+
+#### Pseudocodigo: Arreglos (Arrays).
+
+En este apartado se **explica** como se trabaja con arrays (*Vectores y Matrices*), y como se definen.
+
+##### Ejercicio3
+
+```
+Proceso VectorNotas
+	Definir notas Como Entero;
+	Dimension notas[5];
+	Definir tam_notas como Entero;
+	Definir nota_media Como Real;
+	Definir suma,nota_max,nota_min como Entero;
+	Definir indice Como Entero;
+	
+	tam_notas<-5;
+	Para indice<-0 hasta tam_notas-1 hacer
+		Repetir
+			Escribir sin saltar "Introduce la nota ",indice+1,": ";
+			Leer notas[indice];
+		Hasta Que notas[indice]>=0 Y notas[indice]<=10;
+	FinPara
+
+	nota_max<-notas[0];
+	nota_min<-notas[0];
+	
+	suma<-0;
+	Para indice<-0 hasta tam_notas-1 hacer
+		suma<-suma+notas[indice];
+		Si notas[indice]>nota_max Entonces
+			nota_max<-notas[indice];
+		FinSi
+		Si notas[indice]<nota_min Entonces
+			nota_min<-notas[indice];
+		FinSi
+	FinPara
+
+	nota_media<-suma/tam_notas;
+	Escribir "";
+	Escribir sin Saltar "Notas:";
+	Para indice<-0 hasta tam_notas-1 hacer
+		Escribir sin Saltar notas[indice]," ";
+	FinPara
+	Escribir "";
+	Escribir "Nota media: ",nota_media;
+	Escribir "Nota máxima: ",nota_max;
+	Escribir "Nota mínima: ",nota_min;
+FinProceso
+```
+
+##### Ejercicio4
+
+```
+Proceso VectorPositivo
+	Definir vector Como Entero;
+	Dimension vector[10];
+	Definir tam_vector,indice,num como Entero;
+	indice<-0;
+	tam_vector<-10;
+
+	Repetir
+		Escribir Sin Saltar "Introduce un número en el vector. Número ",indice+1;
+		Leer vector[indice];
+		indice<-indice+1;
+	Hasta Que indice=tam_vector O vector[indice-1]<0;
+
+	indice<-0;
+	Escribir "Elementos del vector";
+
+	Mientras indice<tam_vector-1 Y vector[indice]>=0 Hacer
+		Escribir sin saltar vector[indice]," ";
+		indice<-indice+1;
+	FinMientras
+
+FinProceso
+```
+
+##### Ejercicio5
+
+```
+Proceso OrdenarVector
+	Definir vector Como Entero;
+	Dimension vector[10];
+	Definir cambios,aux Como Entero;
+	Definir indice Como Entero;
+	Definir tam_vector Como Entero;
+	tam_vector<-10;
+
+	Para indice<-0 hasta tam_vector-1 hacer
+		vector[indice]<-aleatorio(1,10);
+	FinPara
+
+	Repetir 
+		cambios<-0;
+
+		Para indice<-0 hasta tam_vector-2 Hacer
+			Si vector[indice]>vector[indice+1] Entonces
+				aux<-vector[indice];
+				vector[indice]<-vector[indice+1];
+				vector[indice+1]<-aux;
+				cambios<-cambios+1;
+			FinSi
+		FinPara
+
+	Hasta Que cambios=0;
+
+	Para indice<-0 hasta tam_vector-1 Hacer
+		Escribir Sin Saltar vector[indice]," ";
+	FinPara
+FinProceso
+```
+
+##### Ejercicio8
+
+```
+Proceso Temperaturas
+	Definir temperatura Como Real;
+	Dimension temperatura[5,2];
+	Definir existe_temperatura Como Logico;
+	Definir indice,cant_dias como Entero;
+	Definir temp_max, temp_min como Entero;
+	cant_dias<-5;
+
+	Para indice<-0 Hasta cant_dias-1 Hacer
+		Escribir Sin Saltar "Día ",(indice+1),". Temperatura mínima:";
+		Leer temperatura[indice,0];
+		Escribir Sin Saltar "Día ",(indice+1),". Temperatura máxima:";
+		Leer temperatura[indice,1];
+	FinPara
+
+	Escribir "Temperaturas medias";
+	Escribir "===================";
+
+	Para indice<-0 Hasta cant_dias-1 Hacer
+		Escribir "Día ",(indice+1),". Temperatura media:",(temperatura[indice,0]+temperatura[indice,1])/2;
+	FinPara
+
+	temp_min<-temperatura[0,0];
+
+	Para indice<-0 Hasta cant_dias-1 Hacer
+		Si temperatura[indice,0]<temp_min Entonces
+			temp_min<-temperatura[indice,0];
+		FinSi
+	FinPara
+
+	Escribir "Días con menos temperatura";
+	Escribir "==========================";
+
+	Para indice<-0 Hasta cant_dias-1 Hacer
+		Si temperatura[indice,0]=temp_min Entonces
+			Escribir "Día ",(indice+1);
+		FinSi
+	FinPara
+
+	existe_temperatura<-Falso;
+	Escribir "Días con temperatura máxima";
+	Escribir "===========================";
+	Escribir sin saltar "Introduce una temperatura:";
+	Leer temp_max;
+
+	Para indice<-0 Hasta cant_dias-1 Hacer
+		Si temperatura[indice,1]=temp_max Entonces
+			Escribir "Día ",(indice+1);
+			existe_temperatura<-Verdadero;
+		FinSi
+	FinPara
+
+	Si no existe_temperatura Entonces
+		Escribir "No hay ningún día con dicha temperatura.";
+	FinSi
+
+FinProceso
+```
+
+##### Ejercicio10
+
+```
+Proceso Tabla
+	Definir matriz Como Entero;
+	Dimension matriz[5,5];
+	Definir fila,col como Entero;
+	Definir num_filas, num_cols Como Entero;
+	Definir suma como Entero;
+	num_filas<-5;
+	num_cols<-5;
+
+	Para fila<-0 hasta num_filas-1 Hacer
+		Para col<-0 hasta num_cols-1 Hacer
+			Escribir Sin Saltar "Introduce el número de la fila ",fila+1," y columna ",col+1,":";
+			Leer matriz[fila,col];
+		FinPara
+	FinPara
+
+	Para fila<-0 hasta num_filas-1 Hacer
+		suma<-0;
+		Para col<-0 hasta num_cols-1 Hacer
+			suma<-suma+ matriz[fila,col];
+		FinPara
+		Escribir "La suma de los elemento de la fila ",fila+1," es ",suma;
+	FinPara
+
+	Para col<-0 hasta num_cols-1 Hacer
+		suma<-0;
+		Para fila<-0 hasta num_filas-1 Hacer
+			suma<-suma+ matriz[fila,col];
+		FinPara
+		Escribir "La suma de los elemento de la columna ",col+1," es ",suma;
+	FinPara
+FinProceso	
+```
+
+#### Pseudocodigo: Progrmacion Estructurada.
+
+En este apartado **explica** como se definen y como funcionan las **funciones** (*Devuelven un valor*), los **Procedimientos** (*no devuelven nada*) y **las funciones recursivas** (*Se llaman unas a otras*).
+
+##### Ejercicio3
+
+```
+Funcion tmedia <- calcularTemperaturaMedia(temp1,temp2)
+	Definir tmedia Como Real;
+	tmedia<-(temp1+temp2)/2;
+FinFuncion
+
+
+
+Proceso TemperturaMedia
+	Definir tmin,tmax Como Real;
+	Definir cantidad,indice como Entero;
+	Escribir Sin Saltar "¿Cuántas temperaturas vas a calcular?:";
+	Leer cantidad;
+	Para indice<-1 hasta cantidad Hacer
+		Escribir sin saltar "Introduce temperatura mínima:";
+		Leer tmin;
+		Escribir sin saltar "Introduce temperatura máxima:";
+		Leer tmax;
+		Escribir "Temperatura media: ",calcularTemperaturaMedia(tmin,tmax);
+	FinPara
+FinProceso
+```
