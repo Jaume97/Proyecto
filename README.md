@@ -641,3 +641,162 @@ Proceso TemperturaMedia
 	FinPara
 FinProceso
 ```
+
+## 18/04/2020
+
+##### Ejercicio5
+
+```
+Funcion CalcularMaxMin(vector,size,max Por Referencia,min Por Referencia)
+	Definir i como Entero;
+	max<-vector[0];
+	min<-vector[0];
+	Para i<-0 hasta size-1 Hacer
+		Si max<vector[i] Entonces
+			max<-vector[i];
+		FinSi
+		Si min>vector[i] Entonces
+			min<-vector[i];
+		FinSi
+	FinPara
+FinFuncion
+
+
+Proceso MaxMin
+	Definir lista Como Entero;
+	Dimension lista[10];
+	Definir size_lista,i Como Entero;
+	Definir vmax,vmin como Entero;
+	size_lista<-10;
+
+	Para i<-0 hasta size_lista-1 Hacer
+		lista[i]<-Aleatorio(1,100);
+	FinPara
+
+	CalcularMaxMin(lista,size_lista,vmax,vmin);
+	Escribir "El valor máximo es ",vmax;
+	Escribir "El valor mínimo es ",vmin;
+FinProceso
+```
+
+##### Ejercicio7
+
+```
+Funcion eslogin<-Login(nombre,pass,intentos por referencia)
+	Definir eslogin Como Logico;
+	Si nombre="usuario1" Y pass="asdasd" Entonces
+		eslogin<-Verdadero;
+	SiNo
+		eslogin<-Falso;
+		intentos<-intentos+1;
+	FinSi
+FinFuncion
+
+Proceso EntrarEnElSistema
+	Definir usuario,clave Como Caracter;
+	Definir cuantasveces como entero;
+	Definir entrar como Logico;
+	cuantasveces<-0;
+	Repetir
+		Escribir Sin Saltar "Usuario:";
+		Leer usuario;
+		Escribir Sin Saltar "Password:";
+		Leer clave;
+		entrar<-Login(usuario,clave,cuantasveces);
+
+		Si no entrar Entonces
+			Escribir "Error. Nombre de usuario o contraseña incorrecta.";
+		FinSi
+
+	Hasta Que  entrar o cuantasveces=3;
+
+	Si entrar Entonces
+		Escribir "Bienvenidos al sistema";
+	SiNo 
+		Escribir "No has entrado en el sistema";
+	FinSi
+
+FinProceso
+```
+
+##### Ejercicio11
+
+```
+Funcion bisiesto <- EsBisiesto(year)
+	Definir bisiesto como Logico;
+	Si (year % 4 = 0 Y NO (year % 100 = 0)) O year % 400 = 0 Entonces
+		bisiesto <- Verdadero;
+	SiNo
+		bisiesto <- Falso;
+	FinSi
+FinFuncion
+
+
+
+Funcion dias <- DiasDelMes(month,year)
+	Definir dias Como Entero;
+	Segun month Hacer
+		1,3,5,7,8,10,12:
+			dias<-31;
+		4,6,9,11:
+			dias<-30;
+		2: //El mes de febrero depende de si el año es bisiesto
+			Si EsBisiesto(year) Entonces
+				dias<-29;
+			SiNo
+				dias<-28;
+			FinSi
+	FinSegun
+FinFuncion
+
+
+
+Funcion diaj <- Calcular_Dia_Juliano(day,month,year)
+	Definir mes como Entero;
+	definir diaj como Entero;
+	diaj<-0;
+	Para mes<-1 hasta month-1 Hacer
+		diaj<-diaj + DiasDelMes(mes,year);
+	FinPara
+	diaj <- diaj + day;
+FinFuncion
+
+
+
+Funcion LeerFecha(day Por Referencia,month Por Referencia, year Por Referencia)
+	Escribir Sin Saltar "Día:";
+	Leer day;
+	Escribir Sin Saltar "Mes:";
+	Leer month;
+	Escribir Sin Saltar "Año:";
+	Leer year;
+FinFuncion
+
+
+
+
+Proceso DiaJuliano
+	Definir d,m,a como Entero;
+	LeerFecha(d,m,a);
+	Escribir "Día Juliano: ",Calcular_Dia_Juliano(d,m,a);
+FinProceso
+
+```
+
+#### Lenguajes de Programacion
+
+En este apartado no hablas un poco de los diferentes lenguajes de programacion existentes, como son: 
+
+* C++
+* Python
+* Java
+* etc...
+
+Tambien mencionan el ensanblador y como antiguamente los programadores trabajon unicamente con 0 y 1, como funcionan los lenguajes de alto nivel, el compilador, el interprete etc...
+
+## Realizacion del examen: Introduccion a la Progrmación.
+
+Se ha **aprobado** con exito, he fallado 2 o 3 preguntas por no entender bien lo que se pregunta y otra por **polas**
+
+
+
