@@ -799,4 +799,18 @@ Tambien mencionan el ensanblador y como antiguamente los programadores trabajon 
 Se ha **aprobado** con exito, he fallado 2 o 3 preguntas por no entender bien lo que se pregunta y otra por **polas**
 
 
+## 20/04/2020
+
+### Curso de java 8 desde cero 
+
+#### Comienza con Java
+
+Al comienzo de este curso se **instala** el **Java Developmet Kit**(*jdk*) y el enterno de desarrollo **eclipse**
+
+> Todavia no se ha instalado ni el jdk ni eclipse,porque sufro de una limitacion a la hora de descargar contenido.
+
+Se ha realizado en primer *Hola Mundo!* en el entorno de eclipse.
+
+#### Tipos de datos, operadores y estructuras de control.
+
 
