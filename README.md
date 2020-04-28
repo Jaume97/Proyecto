@@ -811,6 +811,221 @@ Al comienzo de este curso se **instala** el **Java Developmet Kit**(*jdk*) y el 
 
 Se ha realizado en primer *Hola Mundo!* en el entorno de eclipse.
 
+## 23/04/2020
+
 #### Tipos de datos, operadores y estructuras de control.
 
+En este apartado nos **explica** los *tipos de variables* existentes en java, los *operadores matematicos* y *los operados logicos (OR, AND, XOR, NOT)* 
 
+Ademas de los **castings**, **las estructuras de decision (if,if-else,if-elseif,switch,...)**, **las estructuras repetitivas (while,do-while,for)**
+
+##### Ejercicio calculadora basica
+
+```java
+
+package calculadora;
+
+import java.util.Scanner;
+
+public class Calculadora {
+
+	
+	public static void main(String[] args) {
+		
+		
+		int opcion = 0;
+		Scanner sc = new Scanner(System.in);
+		
+		do {
+
+			System.out.println("\n");
+			System.out.println("***** CALCULADORA OPENWEBINARS *****");
+			System.out.println("1. Sumar");
+			System.out.println("2. Restar");
+			System.out.println("3. Multiplicar");
+			System.out.println("4. Dividir");
+			System.out.println("5. Resto");
+			System.out.println("0. Salir del programa");
+			System.out.print("Introduzca una opción válida: ");
+			
+			opcion = Integer.parseInt(sc.nextLine());
+			
+			if (opcion < 0 || opcion > 5) {
+				System.out.println("Opción no válida. Vuelva a escoger");
+			} else if (opcion != 0) {
+				System.out.println("\n");
+				float operando1, operando2;
+				
+				System.out.print("Introduzca el primer operando: ");
+				operando1 = Float.parseFloat(sc.nextLine());
+				
+				System.out.print("Introduzca el segundo operando: ");
+				operando2 = Float.parseFloat(sc.nextLine());
+
+				
+				System.out.println("\n");
+				switch(opcion) {
+				
+				case 1: 
+					System.out.println("El resultado de la suma es " + (operando1 + operando2));
+					break;
+				case 2: 
+					System.out.println("El resultado de la resta es " + (operando1 - operando2));
+					break;
+				case 3: 
+					System.out.println("El resultado de la multiplicación es " + (operando1 * operando2));
+					break;
+				case 4: 
+					System.out.println("El resultado de la división es " + (operando1 / operando2));
+					break;
+				case 5: 
+					System.out.println("El resto de dividir " +operando1 + " entre " + operando2 + " es "+ (operando1 % operando2));
+					break;
+					
+				}
+				
+			}
+			
+		} while (opcion != 0); 
+		sc.close();
+		System.out.println("Finalizando la ejecución de la calculadora");
+	}
+
+}
+```
+
+#### Clases y objetos
+
+En este apartado **explica** la definicion de objeto en programacion, como se inicializa (*new*), *setters y getters*, ...
+
+#### Manipulacion y tratamiento de datos
+
+Damos un viaje a la **APi de javadoc** y vemos las clases que proporciona java y lo que contiene, como puede ser:
+
+* Atributos.
+* Metodos.
+* Interfaces.
+* Herencia.
+* etc...
+
+La clase **String** y sus metodos staticos *(endWhit(),startWhit(),contains(),...)*.
+El **manejo de arrays**, *unidimensionales y bidimensionales*.
+
+##### Ejercicio: HundirLaFlota
+
+> El ejercicio esta echo en un archivo .java añadida al repositorio.
+
+#### Revisitando clases y objetos
+
+En este apartado **explica** *al comienzo* los tipos de funciones *void* y las funciones que *devuelven un valor* tambien los posibles parametros que se le pueden añadir a un *metodo o constructor*, los **pasos de argumentos por valor y referencia**, los **metodos y variables estaticos** y al final **sobrecargas a metodos y constructores**.
+
+## 25/04/2020
+
+#### Uso de herencia
+
+En este apartado **explica** lo que es la herencia y como funciona, ademas de la sobreescritura de metodos y como hacer que una clase no pueda heredar(*final*).
+
+Ademas explica el poliformismo para las clases herededas.
+
+> Me ha parecido muy curioso que no explicara los castings de una clase a su clase padre, aunque lo que explico basicamente es el termino de polimorfismo.
+
+El trabajo de **super** para subclases tanto en **ambito de constructores como de métodos**.
+
+Implementacion de *interfaces*, *como se definen*,*metodos por defecto* y *métodos estaticos*.
+
+#### Manejo de excepciones
+
+En este apartado **explica** que es una excepcion y como tratarlas con la clausula *try-catch*. Ademas podemos crear nuestras **propias excepciones**.
+
+#### Algunas clases del API de Java
+
+En este apartado **explica** el uso de StringBuilder para el manejo y manipulacion de Strings.
+
+> Ejemplo: Al usar un String y darle la vuelta, normalmente puesto podemos meter char a char del String en un array, y luego recorrerlo al reves y añadirlo a una auxiliar String. Con StringBuilder solo con instanciarla y pasandole como parametro el String ya podemos revertir ese String tan comodamente (reverse();).
+
+El manejo de fechas con las clases **LocalDate**,**LocalTime**,**DayOfMonth**, etc... , con sus metodos correspondientes:
+
+* of();
+* now();
+* equals();
+* from();
+* ...
+
+El uso de **ArrayList** frente al uso de *arrays* y la comodidad que ella ofrece.
+
+> Me ha llamado la atencion que el profesor no enfatizara lo importante que es recorrer la lista de atras hacia adelante a la hora de eliminar datos de la lista.
+
+El uso de **expresiones lambda** como se usan, la **API de stream** etc etc...
+
+> Aqui empiezo a aprener cosas nuevas.
+
+##### Examen: Java 8 desd 0
+
+> El examen está añadido al repositorio de github como imagenes .png
+
+## 26/04/2020
+
+### Curso de Git
+
+#### Introduccion
+
+Empezamos este curso de **Git** con una introduccion a lo que git hace por nosotros, los programadores, ademas de como funciona *teoricamente* (*commited,staged,prepared*).
+
+#### Herramientas de trabajo
+
+Ademas, para la realizacion del curso se intsaló **Git** en nuestro equipo y junto a el la aplicacion de **tkdiff**.
+
+> En este curso al parecer va a usar GitLab para el desarrollo del mismo, por ahora voy a usar GitKraken (ques es el que uso), aunque si me veo con dificultades me paso a GitLab.
+
+## 27/04/2020
+
+#### Organización del codigo fuente y otros elementos del proyecto
+
+En este apartado ya nos explica como **crear un repositorio**, y algunos de los comandos que *git* nos ofrece para el trabajo de repositorios.
+
+* git status.
+* git add.
+* git init.
+* git commit -m.
+* git diff
+* git rm.
+* git mv.
+* git show "HashID".
+* git remote add origin "URL".
+* git fetch. 
+* git pull origin master
+* git clone "URL" "." punto para que se copie el proyecto en ese directorio. 
+* git push origin master
+* git checkout "Nombre rama|archivo".
+* git reset "hard".
+* git revert "HASH ID"
+* git branch "NombreRama"
+* git branch -a -v.
+* git checkout "NombreRama"
+* git merge "NombreRama" "NombreRama'".
+* git diff --cached.
+* git blame .
+* git cherry-pick origin/master "HASHID".
+* git rebase --interactive --root.
+* git tag -a "TAG" - m "MENSAJE".
+* git cimmit --amend.
+* git stash (apply).
+
+> Nota: nano .gitignore : Archivo donde todas las extensiones añadidas a este archivo, git las ignorare y no las pasará a staged.
+> Nota: Usar git (rm | mv) para que git entienda el renombrado y el borrado.
+> Nota: git diff --stage, ves las diferencias entre la caja de Staged y la caja de Commit (Default: Working D y commit)
+> Nota: git remote add origin "URL", se usa para conectarte a un repositorio y conseguir su informacion, NO PARA COPIAR SU CONTENIDO.
+> Nota: git checkout se usa para recuperar archivos de la caja de commits a la caja de Working D. El uso de -- se usa para referencias archivos o grupo de archivos.
+> Nota: git reset trae un archivo de staged a Working D. Si añades hard elimina el area de staged y ademas el Working D aquellos ficheros que se ivan a añadir a staged.
+> Nota: git revert HashID se usa para revertir los cambios de una revision anterior, quitandole la almohadilla a aquello archivos que queremos revertir.
+> Nota: git branch "NombreRama" se usa para crear una rama diferente en el repositorio de git.
+> Nota: git checkout "NombreRama" se usa para cambiar de rama.
+> Nota: git merge "NombreRama" "NombreRama'" sirve para mezclar lasdos ramas en una, produciendo la rama de master.
+> Nota: git branch -a -v sirve para ver las ramas existentes y en que rama estamos posicionados.
+> Nota: git diff --cached sirve para ver las diferencias entre el estado de un archivo en staged y el estado en su repositorio.
+> Nota: git blame se usa para encontrar las personas implicadas en un proyecto, lineas de codigo etc etc...
+> Nota: git cherry-pick origin/master "HASHID" realiza un merge perso solo del commit especificado en el HASHID.
+> Nota: git rebase --interactive --root se usa para condesar varios commits en uno solo. Con la palabra squash eliges los commits a contraer.
+> Nota: git tag -a "TAG" - m "MENSAJE" añade una etiqueta a una version del repositorio. aparece en los commits.
+> Nota: git cimmit --amend permite dar un pasa atras en el historial de tiempo del repositorio para realizar tareas olvidadas, por ejemplo.
+> Nota: git stash (apply) se usa para hacer una instantanea del staged, si añade apply aplica la instantane a tu repositorio (como una copia de seguridad).
