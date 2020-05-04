@@ -985,11 +985,20 @@ En este apartado ya nos explica como **crear un repositorio**, y algunos de los 
 
 * git status.
 * git add.
+
+> Nota: git remote add origin "URL", se usa para conectarte a un repositorio y conseguir su informacion, NO PARA COPIAR SU CONTENIDO.
+
 * git init.
 * git commit -m.
 * git diff
+
+> Nota: git diff --stage, ves las diferencias entre la caja de Staged y la caja de Commit (Default: Working D y commit)
+
 * git rm.
 * git mv.
+
+> Nota: Usar git (rm | mv) para que git entienda el renombrado y el borrado.
+
 * git show "HashID".
 * git remote add origin "URL".
 * git fetch. 
@@ -997,35 +1006,206 @@ En este apartado ya nos explica como **crear un repositorio**, y algunos de los 
 * git clone "URL" "." punto para que se copie el proyecto en ese directorio. 
 * git push origin master
 * git checkout "Nombre rama|archivo".
+
+> Nota: git checkout se usa para recuperar archivos de la caja de commits a la caja de Working D. El uso de -- se usa para referencias archivos o grupo de archivos.
+
 * git reset "hard".
+
+> Nota: git reset trae un archivo de staged a Working D. Si añades hard elimina el area de staged y ademas el Working D aquellos ficheros que se ivan a añadir a staged.
+
 * git revert "HASH ID"
+
+> Nota: git revert HashID se usa para revertir los cambios de una revision anterior, quitandole la almohadilla a aquello archivos que queremos revertir.
+
 * git branch "NombreRama"
+
+> Nota: git branch "NombreRama" se usa para crear una rama diferente en el repositorio de git.
+
 * git branch -a -v.
+
+> Nota: git branch -a -v sirve para ver las ramas existentes y en que rama estamos posicionados.
+
 * git checkout "NombreRama"
+
+> Nota: git checkout "NombreRama" se usa para cambiar de rama.
+
 * git merge "NombreRama" "NombreRama'".
+
+> Nota: git merge "NombreRama" "NombreRama'" sirve para mezclar lasdos ramas en una, produciendo la rama de master.
+
 * git diff --cached.
+
+> Nota: git diff --cached sirve para ver las diferencias entre el estado de un archivo en staged y el estado en su repositorio.
+
 * git blame .
+
+> Nota: git blame se usa para encontrar las personas implicadas en un proyecto, lineas de codigo etc etc...
+
 * git cherry-pick origin/master "HASHID".
+
+> Nota: git cherry-pick origin/master "HASHID" realiza un merge perso solo del commit especificado en el HASHID.
+
 * git rebase --interactive --root.
+
+> Nota: git rebase --interactive --root se usa para condesar varios commits en uno solo. Con la palabra squash eliges los commits a contraer.
+
 * git tag -a "TAG" - m "MENSAJE".
+
+> Nota: git tag -a "TAG" - m "MENSAJE" añade una etiqueta a una version del repositorio. aparece en los commits.
+
 * git cimmit --amend.
+
+> Nota: git cimmit --amend permite dar un pasa atras en el historial de tiempo del repositorio para realizar tareas olvidadas, por ejemplo.
+
 * git stash (apply).
 
-> Nota: nano .gitignore : Archivo donde todas las extensiones añadidas a este archivo, git las ignorare y no las pasará a staged.
-> Nota: Usar git (rm | mv) para que git entienda el renombrado y el borrado.
-> Nota: git diff --stage, ves las diferencias entre la caja de Staged y la caja de Commit (Default: Working D y commit)
-> Nota: git remote add origin "URL", se usa para conectarte a un repositorio y conseguir su informacion, NO PARA COPIAR SU CONTENIDO.
-> Nota: git checkout se usa para recuperar archivos de la caja de commits a la caja de Working D. El uso de -- se usa para referencias archivos o grupo de archivos.
-> Nota: git reset trae un archivo de staged a Working D. Si añades hard elimina el area de staged y ademas el Working D aquellos ficheros que se ivan a añadir a staged.
-> Nota: git revert HashID se usa para revertir los cambios de una revision anterior, quitandole la almohadilla a aquello archivos que queremos revertir.
-> Nota: git branch "NombreRama" se usa para crear una rama diferente en el repositorio de git.
-> Nota: git checkout "NombreRama" se usa para cambiar de rama.
-> Nota: git merge "NombreRama" "NombreRama'" sirve para mezclar lasdos ramas en una, produciendo la rama de master.
-> Nota: git branch -a -v sirve para ver las ramas existentes y en que rama estamos posicionados.
-> Nota: git diff --cached sirve para ver las diferencias entre el estado de un archivo en staged y el estado en su repositorio.
-> Nota: git blame se usa para encontrar las personas implicadas en un proyecto, lineas de codigo etc etc...
-> Nota: git cherry-pick origin/master "HASHID" realiza un merge perso solo del commit especificado en el HASHID.
-> Nota: git rebase --interactive --root se usa para condesar varios commits en uno solo. Con la palabra squash eliges los commits a contraer.
-> Nota: git tag -a "TAG" - m "MENSAJE" añade una etiqueta a una version del repositorio. aparece en los commits.
 > Nota: git cimmit --amend permite dar un pasa atras en el historial de tiempo del repositorio para realizar tareas olvidadas, por ejemplo.
-> Nota: git stash (apply) se usa para hacer una instantanea del staged, si añade apply aplica la instantane a tu repositorio (como una copia de seguridad).
+
+
+> Nota: nano .gitignore : Archivo donde todas las extensiones añadidas a este archivo, git las ignorare y no las pasará a staged.
+
+> Se ha realiado el examen, se adjuntan capturas de pantalla del test realizado. Se han pasao con las preguntas...
+
+## 02/05/2020
+
+### Java 8  para programadores Java
+
+#### Introduccion al diseño de clases en Java.
+
+En este apartado trata de la **composicion de clases** una clase que contiene otras clases, por ejemplo, una clase *Provincia* tiene una lista de los *Municipios* que la conforman.
+
+Ademas nos explica como sobreescribir los metodos **equals**,**hashcode** y **toString**.
+
+**Clase singleton**: Una clase en la que no se puede instanciar directamente, pero se instancia una vez con las referencias a desear, comparten propiedades entre ellas.
+
+> Singleton: se añade una propiedad referenciando a la clase con valor nulo (private static MiServicioSingleton instance = null). No se puede inicializar directamente porque el constructor tiene modificador private.
+
+**Clases Inmutables**: Clases donde una vez inicializadas no se pueden modificar sus valores.
+
+> Inmutables: propiedades como privadas y finales (final), no añadir setters (solo getters), y clase como final (final).
+
+#### Diseño avanzado de clases.
+
+**Metodos abstractos**: Tienen que estar en una clase abstractar, no se implementan simplemente se firman.
+
+> Clases abstractas: las clases abstractas no tienen porque implementar codigo a los metodos instanciados de una interfaz.
+
+> NOTA: Se puede añadir *final* a un paso por parametros para que este no se pueda modificar.
+> Shadowing: cuando un atriburo de una clase interna oculta el atributo de la clase externa con el mismo nombre.
+
+> Clases anidadas: Clases que contienen otras clases.
+> Clases internas: Clases anidadas no estaticas.
+> Clases locales: Se definen en un bloque de {}.
+> Clases anonimas: se definen y se instancian a la vez, se usan una vez.
+
+#### Clases genericas y colecciones.
+
+> Clases Génericas: clases parametrizadas que son de mas de un tipo (class Par<T,S>)(class Par<T extends Number>)(class Par<T extends A & B> [A siempre tiene qe ser una clase los demas son interfaces]).
+
+> Colecciones set: Iguales a los Arraylist salvo que no permite introducir valores repetidos.
+
+#### Interfaces comparables y comparator.
+
+> Comparable: compara logicamente si una clase es mayor que otra segun el metodo de la interfaz a la clase que implementa.
+> Comparator: compara segun un filtro que nosotros queramos, datos que ya tienen un orden establecido, por ejemplo los numeros.
+
+#### Expresiones lambda e interfaces funcionales.
+
+> Una interfaz funcional es aquella que solo tiene un metodo abstracto que hayas creado nosotros, puede tener mas metodos abstractos pero solo si estos sobreescriben a los metodos de object.
+
+> El API Stream es una forma de programar se usa .stream() y mas metodos.
+
+Interfaz Predicate : Metodo boolean test(T t) y metodos de operaciones logicas (and, xor, or, not), comprueba si se cumple una condicion. 
+Interfaz Consumer : Metodo void accept(T t), sirve para imprimir o consumir un objeto.
+Interfaz Function : Metodo R apply(T t), pasa un parametro de un tipo y lo devuelve de otro tipo. sirve para aplicar transformaciones de un objeto,mapeos de un objeto a otro.
+Interfaz Supplier : Metodo T get(), sirve para obtener objetos.
+
+#### Java Stream API
+
+> Stream hace operaciones con lambdas de forma que puedes filtrar, imprimir, etc etc colecciones..(??? no lo entendi muy bien)
+
+Metodos de busqueda de datos.
+
+* allMatch(condicion) return bool,si cumple la condicion de que todos los valores cumplen con la condicion del parametro.
+* noneMatch(condicion) return bool, lo contrario que allMatch, si cumple que todos los valores no cumplen la condicion
+* anyMatcg(condicion) return bool, si algun valor cumple la condicion.
+
+Metodos de reduccion.
+
+* reduce(BinaryOperator<T>):Optional<T> realiza la reducción del Stream usando una función asociativa. Devuevle un Optional
+* reduce(T, BinaryOperator<T>):T realiza la reducción usando un valor inicial y una función asociativa. Se devuelve un valor como resultado.
+
+Metodos de resumen.
+
+* count: devuelve el número de elementos del stream.
+* min(...), max(...): devuelven el máximo o mínimo (se puede utilizar un Comparator para modificar el orden natural).
+
+Metodos de ordenacion.
+
+* sorted() el stream se ordena según el orden natural.
+* sorted(Comparator<T>) el stream se ordena según el orden indicado por la instancia de Comparator.
+
+map es una de las operaciones intermedias más usadas, ya que permite la transformación de un objeto en otro, a través de un Function<T, R>. Se invoca sobre un Stream<T> y retorna un Stream<R>. Además, es muy habitual realizar transformaciones sucesivas.
+
+```java
+lista
+   .stream()
+   .map(Persona::getNombre)
+   .map(String::toUpperCase)
+   .forEach(System.out::println);
+```
+
+Para poder trabajar con la colección interna, necesitamos un método que nos unifique un Stream<Stream<T>> en un solo Stream<T>. Ese es el cometido de flatMap.
+
+```java
+lista
+   .stream()
+   .map((Persona p) -> p.getViajes())
+   .flatMap(viajes -> viajes.stream())
+   .map((Viaje v) -> v.getPais())
+   .forEach(System.out::println);
+```
+
+Colectores basicos: Nos permiten operaciones que recolectan todos los valores en uno solo. Se solapan con alguans operacinoes finales ya estudiadas, pero están presentes porque se pueden combinar con otros colectores más potentes.
+
+* counting: cuenta el número de elementos.
+* minBy(…), maxBy(…): obtiene el mínimo o máximo según un comparador.
+* summingInt, summingLong, summingDouble: la suma de los elementos (según el tipo).
+* averagingInt, averagingLong, averagingDouble: la media (según el tipo).
+* summarizingInt, summarizingLong, summarizingDouble: los valores anteriores, agrupados en un objeto (según el tipo).
+* joinning: unión de los elementos en una cadena.
+
+Colectores Grouping by: Hacen una función similar a la cláusula GROUP BY de SQL, permitiendo agrupar los elementos de un stream por uno o varios valores. Retornan un Map.
+
+```java
+Map<String, List<Empleado>> porDepartamento =
+   empleados
+     .stream()
+     .collect(groupingBy(Empleado::getDepartamento));
+```
+
+Colectores Collection: Producen como resultado una colección: List, Set y Map.
+
+```java
+Set<Empleado> setEmpleados = empleados.stream().collect(Collectors.toSet());
+List<Empleado> listEmpleados = empleados.stream().collect(Collectors.toList());
+Map<String, Double> mapEmpleados = empleados.stream().distinct().collect(Collectors.toMap(Empleado::getNombre, Empleado::getSalario));
+```
+
+filter es una operación intermedia, que nos permite eliminar del stream aquellos elementos que no cumplen con una determinada condición, marcada por un Predicate<T>.
+
+```java
+personas
+            .stream()
+            .filter(p -> p.getEdad() >= 18 && p.getEdad() <= 65)
+            .forEach(persona -> System.out.printf("%s (%d años)%n", persona.getNombre(), persona.getEdad()));
+```
+
+## 04/05/2020
+
+Las referencias a métodos son una forma de hacer nuestro código aun más conciso:
+
+* Clase::metodoEstatico: referencia a un método estático.
+* objeto::metodoInstancia: referencia a un método de instancia de un objeto concreto.
+* Tipo::nombreMetodo: referencia a un método de instancia de un objeto arbitrario de un tipo en particular.
+* Clase::new: referencia a un constructor.
