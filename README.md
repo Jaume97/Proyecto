@@ -1209,3 +1209,111 @@ Las referencias a métodos son una forma de hacer nuestro código aun más conci
 * objeto::metodoInstancia: referencia a un método de instancia de un objeto concreto.
 * Tipo::nombreMetodo: referencia a un método de instancia de un objeto arbitrario de un tipo en particular.
 * Clase::new: referencia a un constructor.
+
+## 05/05/2020
+
+#### Java I/O y NIO.2
+
+Este apartado explica varias cosas que dimos en AD, empezando con los flujos de salida:
+
+* FileOutputStream. (Binario)
+* BufferedOutputStream. (Binario)
+* FileWriter. (char)
+* BufferedWriter. (char)
+
+Siguiendo con los datos de entrada: 
+
+* FileInputStream. (char)
+* BufferedInputStream: flujo que permite leer grupos (buffers) de bytes.
+* FileReader: flujo que permite leer de un fichero, caracter a caracter.
+* BufferedReader: flujo que permite leer líneas de texto.
+
+Ademas explica una alternativa para referenciar tanto a archivos como a repositorios. la clase Path y Paths(Muy parecido a Enviroment de C#)
+Y la clase Files que usan varios metodos estaticos para lectura escritura etc...
+
+#### Concurrencia en java
+
+Concurrencia es el nombre que se le da a la programacion multihilo en java.
+
+Java tiene una clase, Thread, para poder crear y manejar hilos diferentes de ejecución al hilo principal.
+
+Sus métodos básicos son:
+
+* public void run(): contiene el código que queremos ejecutar en el hilo. No se debe invocar nunca directamente.
+* public void start(): lanza la ejecución del hilo.
+
+Runnable: Es un interfaz que nos permite crear tareas para ser ejecutadas en hilos secundarios. Si nuestra clase ya hereda de otra, no puede heredar a la vez de Thread. Runnable nos permite solventar esa dificultad. Thread tiene un constructor que recibe como argumento un runnable.
+
+Callable<v> y Future<v>: Java nos ofrece el interfaz Callable<V> que es, básicamente, un Runnable que devuelve un valor.Para recoger el valor de un Callable, necesitamos un Future. Se trata de otra interfaz, que representa el resultado de una computación asíncrona.
+
+> Para que un método sincronizado, sólo tiene que añadir la palabra clave synchronized a su declaración:
+
+Wait y Notify: Son método de la clase Object, disponibles en cualquier clase Java que implementemos. Nos permiten poner en espera a un hilo, hasta que se cumpla una determinada condición. Posteriormente, podemos notificarle que ya puede continuar con su ejecución, ya que la condición bloqueante ha dejado de cumplirse.
+
+Colecciones concurrentes: 
+
+* BlockingQueue: estructura FIFO que bloquea si la cola se queda llena o vacía.
+* ConcurrentMap: Map con operaciones atómicas.
+* ConcurrentNavigableMap: NaviagleMap con búsquedas aproximadas.
+
+BlockingQueue: e trata de una estructura FIFO: first-in-first-out (primero en entrar, primero en salir). conocida en castellano como cola. Java nos ofrece diferentes implementaciones:
+
+* ArrayBlockingQueue: debemos construirla con una capacidad inicial fija.
+* LinkedBlockingQueue: su capacidad inicial es Integer.MAX_VALUE (el mayor valor entero que podemos almacenar en un int).
+* PriorityBlockingQueue: permite ordenar los elementos según prioridad.
+
+##  10/05/2020
+
+#### Bases de datos y Java
+
+* Statement: Nos provee de método para ejecutar consultas en una base de datos relacional. Recibe la consulta como un String, y devuelve (generalmente) un objeto de tipo ResultSet.
+* Resultset: se trata del objeto que nos permite recoger los resultados de una consulta SELECT.
+* PreparedStatement: Se trata de una extensión de Statement que nos permite asignar los tipos de dato de los parámetros y sus valores, de forma conveniente.
+
+* Rowset: no es más que un objeto que nos permite manejar información tabular de forma mucho más rápida y eficiente que un ResultSet.
+> con los ResultSet podíamos tener la posibilidad de hacer scroll (libre, no solo hacia adelante) o utilizarlos en modo escritura, pero solo en algunos tipos de drivers. RowSet nos asegura el poder realizarlo con cualquier sistema gestor de bases de datos.
+
+```java
+RowSetFactory myRowSetFactory = null;
+JdbcRowSet rowSet = null;
+
+myRowSetFactory = RowSetProvider.newFactory();
+rowSet = myRowSetFactory.createJdbcRowSet();
+```
+
+* JdbcRowSet: Este tipo de RowSet es el único que mantiene siempre la conexión de la base de datos abierta. Esto tiene como ventaja la velocidad e inmediatez de los cambios. Como desventaja, dicho esquema de trabajo suele ser muy costoso (hablando en términos de recursos, sobre todo en el servidor de bases de datos).
+* CachedRowSet: Se trata del interfaz base de todos los RowSet de tipo desconectado (FilteredRowSet, JoinRowSet y WebRowSet heredan de este interfaz). La principal diferencia es que solo abre la conexión para rellenar el RowSet de datos, y posteriormente, para enviar las modificaciones a la base de datos.
+
+> Se ha realizado el examen, capturas de pantalla del test en el repositorio.
+
+### Programacion en android
+
+#### Introduccion a  Android
+
+Empezamos este curso con la presentacion del curso y la instalacion del IDE (Android Studio). Ademas que una buena explicacion exhaustiva de todolo que proporcionada *Android Studio*(Debug,AVD Manager, ...).
+
+Añadiendo a esta introduccion el paso de **Activitys** y la creacion y **paso de datos con Intents (Implicitos y Explicitos)**.
+
+#### Interfaz Grafica
+
+Este apartado explica los *LinearLayout* y los *RelativeLayout*, ambos explicados por encima porque logicamente se usará el *ConstraintLayout*.
+
+Ademas de una serie de *controles de entrada* como pueden ser:
+
+* Checkbox
+* Radiobutton
+* Button
+* InputView
+* ...
+
+Uso de Imagenes vectoriales tanto **nativas** de android como locales de nuestro equipo. Ademas el uso de las librerias **Picasso y Glide** para la gestion de imagenes subidas a la nube.
+
+Una buena explicacion de lo que consiste el constraintLayout y el fichero *Colors.xml*.
+
+#### Fragments(Fragmentos).
+
+Empieza explicando en que consiste el trabajo de los *fragments* y para que se usan haciendo un ejemplo muy basico sobre como se crean y se visualizan.
+
+> Fragments Dinamicos: Son aquellos en los que modificas el propio fragment o el comportamiento de los fragments.
+
+
