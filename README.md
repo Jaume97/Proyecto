@@ -1316,4 +1316,526 @@ Empieza explicando en que consiste el trabajo de los *fragments* y para que se u
 
 > Fragments Dinamicos: Son aquellos en los que modificas el propio fragment o el comportamiento de los fragments.
 
+> Fragment List: Consiste en una lista como si fuera un RecyclerView (En realidad es un RecyclerView) de un fragment determinado.
 
+#### Navigation (Navegacion)
+
+Empieza explicando los **menus**, los del *toolbar*, los *menus contextuales*,*menus laterales (Drawer)*
+
+> Navigation Drawer: se implimenta al inicar una activity, en vez de escoger empty activity se coje la opcion de menu lateral.
+
+> Nota: Lo hace todo con fragments.
+
+Tabs: Navegacion por pestañas en la parte inferior de la Activity.
+
+> En este apartado todo lo que explica son las Activitys ya definidas por android studio.
+
+#### Listado de elementos
+
+Este apartado se adentra **bastante profundo** en los listView y los RecyclerView **(mas en los ListView)**
+
+> Nada nuevo en este apartado, salvo que el profesor no usa para nada la interfaz grafica del IDE, usa siempre XML :(
+
+#### Almacenamiento local
+
+En este apartado entra dentro el guardado de datos con *SharedPreferences*.
+
+Ademas usan la clase **Realm** para heredar de la misma y guardar sus datos en una **base de datos**.
+
+> No entendi casi nada de este apartado del Realm.
+
+#### Google maps
+
+Para estos proyectos de maps es necesario instalar el SDK **google play services** y el emulador tener los servicios de **play store**.
+
+* Primer paso:
+Se nesita una clave (**key**) de google para poder usar *google maps*, con ello en el fichero ya creado *google_maps_api.xml* existe un enlace que con ella te dan una clave para poder usar *google maps* ademas google inscribe tu equipo como usuario y desarrollador de aplicaciones de maps.
+
+> Para trabajar con maps es necesario ver la API de google maps para desarrolladores, puesto que ahí esta todo lo necesario para un programador, es imposible saberse todo esto de memoria.
+
+* Eventos al mapa
+
+```java
+mMap = setOnMapClickListener(this);
+```
+
+> Enlazas el evento de click sobre el mapa, el parametro this es para decir que el metodo del evento se realiza en esa misma activity. 
+
+```java
+mMap = setOnMapLongClickListener(this);
+```
+
+> Enlazas el evento de click LARGO sobre el mapa, el parametro this es para decir que el metodo del evento se realiza en esa misma activity. 
+
+* Añadir Markers
+
+```java
+mMap.addMarker(new MarkerOptions()
+	.position(new LatLng(x,y))
+	.title("talleres")
+	.snippet("telefono: dasdada"));
+```
+
+* Eventos sobre markers
+
+```java
+mMap = setOnMarkerClickListener(this);
+```
+
+> Enlazas el evento de click sobre el marker del mapa, el parametro this es para decir que el metodo del evento se realiza en esa misma activity. 
+
+Ademas si implementas la interfaz *OnMarkerDragListener* tendras 3 metodos que son los siguientes:
+
+* onMarkerDragStart(marker:Marker):void : Evento de comienzo del drag(movimiento).
+* onMarkerDrag(marker:Marker):void : evento del propio drag.
+* onMarkerDragend(marker:Marker):void : Evento cuando acabas de hacer drag.
+
+* Movimiento de la camara
+
+```java
+mMap.moveCamera(CameraUpdteFactory.newLAatLng(nuevaLongitudLatitud));
+```
+
+> Con esto mueves la camara (Es muy brusco), con mMap.animateCamera() realiza una pequeña transicion.
+
+Ademas podemos añadir Markers con formas **poligonales** (circulos,lineas, rectangulos, ...)
+
+```java
+CircleOptions circleOptions = new CircleOptions()
+	.center(sydney)
+	.radius(1000) //en metros
+
+circle =mMap.addCircle(CircleOptions);
+```
+
+#### Conexion con API Rest
+
+Retrofit es una librería maravillosa para hacer llamadas red y obtener el resultado estructurado de una vez. La labor manual de utilizar un HttpClient y luego usar json.get para construir nuestros objetos es cosa del pasado con Retrofit.
+
+> jsonschema2pojo: Pagina web donde si proporcionas un JSOn te devuelve su codigo java correspondiente(Response).
+
+Se usa una interfaz con los metodos a usar en la aplicacio  con terminologia Rest (@POST,@GET,@Path,...) y luego se instancia en el posible login.
+
+### Programacion en Kotlin para Android
+
+#### Introduccion
+
+En este apartado explica la "historia" de Kotlin y sus caracteristicas frente a Java.
+
+#### Conceptos basicos
+
+Para definir una clases usamos la palabra clave class.
+Si una clase implementa una interfaz usaremos “:”
+En el caso de que extendamos de una clase e implementemos otra, usaremos las comas.
+
+```kotlin
+class A : B(), MyInterface
+```
+
+Por defecto todas las clases son “finales” por ello, si queremos extender de ella ésta debe ser declarada como open o abstract.
+Todas las clases extienden por defecto de Any (Todo extiende de object como en .NET).
+
+Constructores(Basico)
+
+* Todas las clases tienen un constructor predeterminado por defecto
+* Los tipos se escriben justo después del nombre
+* No es necesario corchetes si la clase está vacía
+* Declarar una estructura init si quieres implementar algo en el cuerpo de un constructor
+
+```kotlin
+open class A(var var1: String,var var2: Int)
+
+class B(var1: String, var2: Int, var var3: String) : A(var1,var2),MyInterface{
+	init{
+	    println("init invocado")
+	}
+	
+	override fun foo(){
+	    println("foo")
+	}
+}
+```
+
+Diferencias con Java:
+
+* No existen conversiones automáticas entre los tipos numéricos.
+* Puede ser declaradas mutables (var) o inmutables (val)
+* Operaciones aritméticas a nivel de bit. Ej: | -> or, & -> and.
+* No es necesario especificar el tipo, al inicializarla el compilador lo inferirá.
+* Un String puede ser accedido como un array e incluso ser iterado.
+
+Propiedades
+
+* No es necesario especificar getters y setters
+* Se pueden hacer accesos customizados a las variables con los bloques get() y set(value)
+* Se pueden especificar como mutables e inmutables
+
+```kotlin
+class A {
+    var variable1: String //- Esta propiedad es editable
+    
+    val value1: String //- Esta propiedad NO es editable
+    
+    var isEmpty: Boolean
+    	get() = variable1.count() == 0
+    
+    var number: Int
+    	set(value) {
+            if (value >= 0) field = value else field = 0
+        }
+    
+    constructor(variable1: String, value1: String, number: Int) {
+        this.variable1 = variable1
+        this.value1 = value1
+        this.isEmpty = false
+        this.number = number
+    }
+}
+
+fun main(args: Array<String>) {
+	var objectA = A("Propiedad mutable", "propiedad inmutable", 4)
+    
+    println(objectA.variable1)
+    
+    objectA.variable1 = "Hola Mundo"
+    println(objectA.variable1)
+    
+    println("Número: " + objectA.number)
+    //El set se usa asignandole(=) un valor.
+    objectA.number = -10
+    println("Número: " + objectA.number)
+    
+    //- Retornará un error ya que no es editable
+    //objectA.value1 = "Adiós Mundo"
+    //println(objectA.value1)
+    
+    val text = "StringComoArray"
+    println("Accedemos al elemento con índice 2: " + text[2])
+    
+    
+    for (item in text) {
+        println(item)
+    }
+    
+    //- Strings en Kotlin son inmutables por lo que la siguiente línea retornará un error
+    //text[2] = "a" 
+}
+```
+
+Nulabilidad
+
+* añadir ? despues del tipo de dato para decir que esta variable puede admitir nulos.
+* añadir ?. para que se siga ejecutando codigo si lo que esta antes de ?. es DISTINTO de nulo.
+* añadir ?: para darle un valor por defecto si lo que esta antes de ?: es IGUAL a nulo.
+* añadir !! para que fuerze la ejecucion aunque sea nulo (NUNCA USARLO).
+* funcion let: especialmente utiles para los nulos encadenados. 
+
+```kotlin
+class A(var var1: String?, var var2: String)
+
+fun main(args: Array<String>) {
+    var objectA = A(null, "test")
+    
+    //- Retornará un error puesto que no puede ser null
+    //objectA.var2 = null
+    
+    println("Count var1: " + objectA.var1?.count())
+    
+    objectA.var1 = "Hola"
+    println("Count var1: " + objectA.var1?.count())
+    
+    objectA.var1 = null
+    println("Count var1 elvis: " + (objectA.var1?.count() ?: 0))
+    
+    //- Nos dejará compilar pero provocará un NPE
+    //println("Count: " + objectA.var1!!.count())
+    
+    var objectB: A? = null
+    objectB?.var2?.let { println("Hola objectB") }
+    
+    objectB = A("Var1", "Var2")
+    objectB?.var2?.let { println("Hola objectB") }
+    
+    var objectC: A? = A("Test 1", "Test 2")
+    objectC?.var2?.let { println("Hola objectC") }
+}
+```
+
+Castin de objetos
+
+* se usa el "is" para saber de que tipo es una variable.
+* se usa "as" para hacer un castin de tipos.
+
+```kotlin
+open class A(var var1: String)
+class B(var1: String, var var2: String) : A(var1)
+class C(var1: String, var var3: String) : A(var1)
+
+fun main(args: Array<String>) {
+	var objectA: Any = B("Hola Mundo", "Test")
+    
+    if (objectA is A) println(objectA.var1)
+    if (objectA is B) println(objectA.var2)
+    if (objectA is C) println(objectA.var3)
+    
+    //- No compilará puesto que no hará el casting automático a C
+    //if (objectA !is C) println(objectA.var3)
+    
+    //- Si no es de tipo C hará un casting forzoso a B
+    if (objectA !is C) println((objectA as B).var1)
+}
+```
+
+Mutabilidad de las colecciones
+
+* Collection. Contiene todos los métodos de iteración, consulta de tamaño, etc. Pero no los métodos de añadir y borrar elementos.
+* MutableCollection. Extiende de Collection y añade los métodos de agregación, eliminación, limpieza, etc.
+
+´´´kotlin
+val list = listOf(“Test 1”, “Test 2”)
+
+var mutableList =  mutableListOf(“Test 1”)
+mutableList.add(“Test 2”)
+´´´
+
+> Se aconseja usar val para todas las variables que se vayan a usar y si quieres modificarlas cambiarlas a var.
+
+Bucles for
+
+* for (number in 1..10) va desde el 1 al 10 incluido (10 veces)
+* for (number in 1 until 10) lo mismo pero exceptuando el 10 (9 veces)
+
+> el bucle while es identico a java
+
+#### Profundizando un poco en el lenguaje
+
+Funciones de extension: Es una función que agrega un nuevo comportamiento a una clase y lo mejor… ¡Hasta sin tener acceso al código fuente!
+
+Ventajas:
+
+* Añadimos funciones extras a clases ya existentes
+* No es necesario pasar el objeto como argumento
+* Actúa como si perteneciese a la clase, por lo que podemos usar sus métodos públicos
+* Pueden añadir también propiedades
+
+* Receiver Type. Clase a la que se añade la función
+* Receiver Object. Valor al que llama la función
+
+```kotlin
+fun TextView.setTextAndHideIfIsNeeded(text:String){
+   this.text=text
+   if(TextUtils.isEmpty(text)){
+      this.visibility=View.GONE
+   } else {
+      this.visibility=View.Visible
+   }
+}
+```
+> TextView: Receiver Type & this: Receiver Object.
+
+Colecciones: 
+
+* Kotlin proporciona clases específicas para los arrays de tipo primitivo: IntArray, ByteArray, CharArray, BooleanArray, etc.
+
+Formas de crear Arrays 
+
+* Pasándole sólo el tamaño del mismo. (val ints = IntArray(10))
+* Pasando directamente el valor de cada elemento.(val ints: IntArray = intArrayOf(1, 2, 3))
+* Pasando el tamaño y una lambda para inicializar cada elemento(val ints = IntArray(10) {i -> i*2})
+
+Operaciones comunes con colecciones
+
+* Filter. Filtra los elementos de una lista incluso eliminando los elementos pero no puede editarlos.
+* Map. Igual que filter pero ésta si puede editar los elementos.
+* All. Comprueba si todos los elementos cumplen o no un predicado.
+* Fold. Acumula empezando con el valor inicial y aplicando la operación pasada mediante una lambda para cada elemento.
+* Any. Comprueba si algún elemento cumple el predicado pasado por parámetro.
+* Count. Retorna el número de elementos que cumple el predicado.
+* Find. Retorna el primer elemento que cumple elp redicado o null si no hay ninguno.
+* Max o min. Retorna el valor máximo o mínimo de un listado (null si la lista está vacía).
+* Partition. Retorna dos listas, una con los elementos que cumplen el predicado y otra con los que no.
+* ElementAtOrNull. Retorna el elemento o null si el índice está fuera de rango.
+* Sort, sortBy, reverse, etc. Métodos de ordenación de los elementos.
+
+> Al pasar una colección de Kotlin a Java, ésta puede ser editada e incluso se pueden introducir nulos en la misma.
+
+WHEN: Similar al switch/case pero mucho más potente y frecuente de ver en el código. Tanto en el argumento como en los case se puede usar cualquier cosa. Un uso muy frecuente son los smart cast.
+
+```kotlin
+open class A(var var1: String)
+class B(var1: String, var var2: String) : A(var1)
+class C(var1: String, var var3: String) : A(var1)
+class D(var1: String, var var4: String) : A(var1)
+
+enum class Country(var code: String, var fullName: String) {
+    SPAIN("ES", "España"),
+    GERMANY("DE", "Alemania"),
+    JAPAN("JP", "Japón")
+}
+
+fun main(args: Array<String>) {
+    println(getText(B("Test 2", "Test var2")))
+    println(getText(C("Test 3", "Test var3")))
+    println(getText(D("Test 4", "Test var4")))
+    
+    val spain = Country.SPAIN
+    val japan = Country.JAPAN
+    println(spain.fullName + " está en Europa? " + isEuropean(spain))
+    println(japan.fullName + " está en Europa? " + isEuropean(japan))
+}
+
+fun getText(value: A) = when(value) {
+    is B -> value.var2
+    is C -> value.var3
+    else -> "Error"
+}
+          
+fun isEuropean(country: Country) = when(country) {
+    Country.SPAIN, Country.GERMANY -> "Sí"
+    else -> "No"
+}
+```
+
+Excepciones:
+
+* No tiene checked exceptions
+* try es una expresión, por lo que se puede usar para retornar valores
+* throw también es una expresión por lo que se puede usar en las expresiones elvis
+
+```kotlin
+val count: Int = try {
+     number!!.count()
+ } catch (e: Exception) {
+     0
+ }
+```
+
+```kotlin
+number?.let { println(number) } ?: error()
+```
+
+Tipo nothing: 
+
+Expresión throw es el tipo Nothing. Se usa para marcar una función que nunca retorna, por ejemplo que siempre acaba dando una excepción.
+
+```kotlin
+fun error(): Nothing {
+ throw RuntimeException()
+}
+```
+
+Lambdas
+
+* Siempre va encapsulado entre llaves
+* La lista de parámetros no necesita ir entre paréntesis
+* La flecha separa la lista de parámetros del cuerpo de la lambda
+
+```kotlin
+{valueX: Int, valueY: Int -> valueX * valueY}
+```
+
+Inline y crossline
+
+* Función Inline. No consumen tantos recursos ya que en tiempo de compilación el compilador la sustituirá por el código y no creará clases anónimas.
+* Función Crossline. Se usa cuando una función será llamada desde otra lambda.
+
+```kotlin
+private inline fun executeInBackground(crossline function: () -> UInit){
+   Thread({ function() }).start()
+}
+
+executeInBackground{ Log.e("test","test") }
+```
+
+```kotlin
+class A (var number: Int, var text: String)
+
+fun iterateListWithLambda(list: List<Int>, function: (number: Int) -> Unit) {
+    list.map { 
+        println("Test: " + it)
+        function(it)
+    }
+}
+
+fun executeMethodsIfNumberIsPair(number: Int, pair: () -> Unit, odd: () -> Unit) {
+    if (number % 2 == 0) pair() else odd()
+}
+
+fun main(args: Array<String>) {
+	val objectList = listOf(A(1, "Test"),
+                        A(2, "Test 2"),
+                        A(3,"Test 3"))
+    val intList = listOf(1, 2, 3, 4)
+    
+    println("--- Antes de la lambda ---")
+    objectList.map { println(it.number) }
+    
+    println("")
+    println("--- Después de la lambda ---")
+    //intList.map { value: A -> value.number++ }
+    objectList.map { it.number++ }
+    objectList.map { println(it.number) }
+    
+    println("")
+    println("--- Ejecutar método con lambda ---")
+    var number = 0
+    iterateListWithLambda(intList, {
+        number += it
+    })
+    println("Number: " + number)
+    
+    println("")
+    println("--- Ejecutar método executeMethodsIfNumberIsPair ---")
+    executeMethodsIfNumberIsPair(11, {
+        println("Es par")
+    }, {
+        println("No es par")
+    })
+}
+```
+
+#### Android meets Kotlin
+
+Para crear un nuevo proyecto de kotlin simplemente le añadimos el check de agragar soporte para kotlin, ademas el IDE nos da la opcion de transformar nuestro codigo java en kotlin.
+
+En kotlin ya no tenemos que usar el findviewbyid nunca mas, ya que podemos llamar directamente al componente desde nuestra activity gracias a un import.
+
+Para los listener: si solo tiene un evento es mejor realizarlo con una lambda, sino entonces tendriamos que hacer un objeto de la interfaz.
+
+Para añadir funciones nuevas al view realizamos funciones de extension.
+
+> No me ha quedado muy claro para que sirve el lazy<>
+
+Lambdas en Kotlin es como la pizza y el queso, todo kotlin como quien dice funciona a base de lambdas.
+
+> Recordar que unit es para decir que una labmda es de tipo void, añadir la palabra reservada crossline si esa funcion que se le pasa a una lambda va a aser usada en otra labmda.
+
+Realm kotlin:
+
+* Debemos añadir codigo al gradle de nuestro proyecto(Usar internet para saber el codigo)
+* Debemos instanciar Realm en nuestro onCreate. (Realm.init(this))
+* Ademas de añadir un <aplication> a nuestro manifest.
+* Para configurar Realm:
+
+```kotlin
+val config= RealmConfiguration.Builder.name("nombreDB").build
+
+Realm.setDefaultConfiguration(config)
+```
+
+* para añadir una clase en realm tenemos que escribir la anotacion @RealmClass y heredar de RealmObject
+
+Dagger2
+
+Anotaciones: 
+
+* @Module: Clases que proporcionan dependecias.
+* @Provides: Marca los metodos en el moduilo que devuelven dependencias.
+* @Component: Interfa de puente entre los modulos y la inyeccion.
+* @inject: solicita una dependencia.
+
+* Si no inicializamos una variable lateinit nos dara una excepcion UninitializedPrpopertyAcessException
+
+> El examen tanto de Android en java como en Kotlin estan en el repositorio.
+
+# Realiado la carrera de programador Android :)
